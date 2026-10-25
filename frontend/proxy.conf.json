@@ -1,0 +1,10 @@
+{
+  "/health/catalog": {
+    "target": "http://localhost:5001",
+    "pathRewrite": { "^/health/catalog": "/health" }
+  },
+  "/health/library": {
+    "target": "http://localhost:5003",
+    "pathRewrite": { "^/health/library": "/health" }
+  }
+}

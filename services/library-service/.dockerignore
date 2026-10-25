@@ -1,0 +1,3 @@
+# Build output from the host: the image compiles from scratch
+bin/
+obj/

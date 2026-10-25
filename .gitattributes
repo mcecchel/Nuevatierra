@@ -1,0 +1,12 @@
+# Normalize line endings so Windows and macOS/Linux teammates produce clean diffs
+* text=auto eol=lf
+
+# Windows-only files that expect CRLF
+*.sln text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Never touch binary files
+*.png binary
+*.jpg binary
+*.ico binary

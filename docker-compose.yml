@@ -1,0 +1,62 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    # The image is amd64-only: native on Intel/AMD, emulated (Rosetta) on Apple Silicon
+    platform: linux/amd64
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Express
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:?Set MSSQL_SA_PASSWORD in .env (see .env.example)}
+    ports:
+      # Exposed (on this machine only) so services started with `dotnet run`
+      # and database tools can connect
+      - "127.0.0.1:1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      # Healthy only once SQL Server actually answers a query
+      test: /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "$$MSSQL_SA_PASSWORD" -C -Q "SELECT 1" -b -o /dev/null
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  catalog-service:
+    build: ./services/catalog-service
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    ports:
+      # Exposed for local development: the ng serve proxy and Postman call
+      # the services directly
+      - "127.0.0.1:5001:8080"
+
+  library-service:
+    build: ./services/library-service
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      # "sa" is the SQL Server administrator: fine for local development; a production
+      # setup would use a dedicated login with access to this database only
+      ConnectionStrings__LibraryDb: "Server=sqlserver;Database=LibraryDb;User Id=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    ports:
+      # Exposed for local development: the ng serve proxy and Postman call
+      # the services directly
+      - "127.0.0.1:5003:8080"
+
+  gateway:
+    build:
+      # Built from the repository root: the image needs both frontend/ and gateway/
+      context: .
+      dockerfile: gateway/Dockerfile
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      # Start order only: nginx resolves service names per request, so it also
+      # works while a service is down
+      - catalog-service
+      - library-service
+
+volumes:
+  sqlserver-data:

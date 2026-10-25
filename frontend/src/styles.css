@@ -1,0 +1,126 @@
+/* Bootstrap CSS e' caricato da angular.json: sotto solo token e override */
+/* Colori e font del tema scuro*/
+:root {
+	--ge-bg: #0b1218;
+	--ge-bg-alt: #0f1820;
+	--ge-band: #16232d;
+	--ge-surface: #101a22;
+	--ge-border: #223039;
+	--ge-text: #f2f5f7;
+	--ge-muted: #8493a1;
+	--ge-accent: #00b06a;
+	--ge-accent-hover: #00c978;
+	--bs-body-bg: var(--ge-bg);
+	--bs-body-color: var(--ge-text);
+	--bs-body-font-family: 'DM Sans', system-ui, sans-serif;
+	--bs-link-color-rgb: 0, 176, 106;
+}
+
+body {
+	background: var(--ge-bg);
+	color: var(--ge-text);
+	-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: "Inter", system-ui, sans-serif;
+	letter-spacing: -0.02em;
+}
+
+/* Colonna centrale dei contenuti */
+.container-ge {
+	width: 100%;
+	max-width: 832px;
+	margin-inline: auto;
+	padding-inline: 1rem;
+}
+
+/* Intestazione di sezione: titolo a sinistra, link a destra, linea sotto */
+.section-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding-bottom: 0.55rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid var(--ge-border);
+	font-size: 0.68rem;
+	font-weight: 500;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: #c3ccd4;
+}
+.section-head a {
+	color: var(--ge-muted);
+	text-decoration: none;
+}
+.section-head a:hover {
+	color: var(--ge-text);
+}
+
+/* Pulsante verde cta (si usa insieme a .btn di Bootstrap). */
+.btn-ge {
+	--bs-btn-padding-x: 1.1rem;
+	--bs-btn-padding-y: .55rem;
+	background: var(--ge-accent);
+	border: 0;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+.btn-ge:hover, .btn-ge:focus-visible {
+	background: var(--ge-accent-hover);
+	color: #fff;
+}
+
+.eyebrow {
+	color: var(--ge-accent);
+	font-size: 0.66rem;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+}
+
+/* Segnaposto (usato da card senza cover e dalle sezioni statiche) */
+/* Segnaposto (colore + cerchio) per recensioni e liste statiche. */
+.ph-poster {
+	position: relative;
+	display: block;
+	aspect-ratio: 2/3;
+	border-radius: 3px;
+	overflow: hidden;
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+.ph-poster .ph-poster__n {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.55rem;
+	font-size: 0.62rem;
+	color: rgba(255, 255, 255, 0.75);
+}
+.ph-poster::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 38%;
+	aspect-ratio: 1;
+	transform: translate(-50%, -50%);
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-radius: 50%;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+	outline: 2px solid var(--ge-accent);
+	outline-offset: 2px;
+}
+
+/* NB Accessibilita': chi ha disattivato le animazioni nel sistema non le vedra' */
+@media (prefers-reduced-motion: reduce) {
+	* {
+	transition: none !important;
+	animation: none !important;
+	}
+}

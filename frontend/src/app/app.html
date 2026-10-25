@@ -1,0 +1,21 @@
+<main class="container py-5">
+  <h1>{{ title() }}</h1>
+  <p class="lead">Explore the world of video games.</p>
+  <h2 class="h5 mt-4">Backend services</h2>
+  <ul class="list-group">
+    @for (service of services; track service.name) {
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ service.name }}
+        @if (service.health.isLoading()) {
+          <span class="badge text-bg-secondary">checking…</span>
+        } @else if (service.health.error()) {
+          <span class="badge text-bg-danger">down</span>
+        } @else {
+          <span class="badge text-bg-success">{{ service.health.value() }}</span>
+        }
+      </li>
+    }
+  </ul>
+</main>
+
+<router-outlet />

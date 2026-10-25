@@ -1,0 +1,6 @@
+@LibraryService_HostAddress = http://localhost:5003
+
+GET {{LibraryService_HostAddress}}/health
+Accept: text/plain
+
+###
