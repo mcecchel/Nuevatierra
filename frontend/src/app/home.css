@@ -1,0 +1,79 @@
+:host { display: block; }
+
+/* Bands */
+.band { padding-block: 4rem; }
+.band--alt { background: var(--ge-bg-alt); }
+.band--surface { background: var(--ge-surface); }
+
+/* Hero */
+.hero {
+	position: relative;
+	overflow: hidden;
+	padding: clamp(5rem, 14vw, 11rem) 0 4.5rem;
+	background: linear-gradient(180deg, #0e161d 0%, var(--ge-bg) 100%);
+}
+.hero::before { /* stand-in for the hero image */
+	content: "";
+	position: absolute;
+	inset: 0 28%;
+	background: rgba(255, 255, 255, 0.025);
+	border-inline: 1px solid rgba(255, 255, 255, 0.06);
+}
+.hero > .container-ge { position: relative; }
+.hero h1 { font-size: clamp(2rem, 6vw, 2.75rem); font-weight: 800; line-height: 1.2; margin: 0; }
+.hero__lead { max-width: 29rem; margin: 1.1rem 0 1.5rem; color: #aab6c0; font-size: .9rem; line-height: 1.65; }
+.hero__note { color: var(--ge-muted); font-size: .68rem; }
+
+/* Popular games grid */
+.games-grid { --bs-gutter-x: .75rem; --bs-gutter-y: 1rem; }
+.skeleton { background: var(--ge-band); animation: pulse 1.2s ease-in-out infinite alternate; }
+.skeleton::after { display: none; }
+@keyframes pulse { to { opacity: .45; } }
+.state { padding: 2.5rem 1rem; text-align: center; color: var(--ge-muted); border: 1px solid var(--ge-border); border-radius: 3px; }
+
+/* About + features */
+.about__title { max-width: 34rem; margin: 4rem 0 2rem; font-size: clamp(1.4rem, 3.4vw, 1.6rem); font-weight: 700; line-height: 1.3; }
+.features { padding: 1.5rem; background: var(--ge-surface); border: 1px solid var(--ge-border); border-radius: 3px; }
+.features__n { color: var(--ge-accent); font-size: .72rem; font-weight: 700; }
+.features__title { margin: 1.4rem 0 .5rem; font-family: var(--bs-body-font-family); font-size: .9rem; font-weight: 700; letter-spacing: 0; }
+.features__text { margin: 0; color: var(--ge-muted); font-size: .72rem; line-height: 1.6; }
+
+/* Reviews */
+.review { display: flex; gap: 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--ge-border); }
+.review:first-of-type { padding-top: .25rem; }
+.review__poster { flex: 0 0 5.2rem; width: 5.2rem; align-self: flex-start; }
+.review__user { display: flex; align-items: center; gap: .5rem; color: var(--ge-muted); font-size: .66rem; }
+.review__title { margin: .5rem 0 .4rem; font-family: var(--bs-body-font-family); font-size: .9rem; font-weight: 700; letter-spacing: 0; }
+.review__stars { margin-left: .35rem; color: var(--ge-accent); font-size: .68rem; letter-spacing: .08em; }
+.review__text { margin: 0 0 .6rem; color: #b6c0c9; font: .78rem/1.5 Georgia, 'Times New Roman', serif; }
+.review__likes { color: var(--ge-muted); font-size: .62rem; }
+
+.avatar { display: inline-grid; place-items: center; flex: none; width: 1.5rem; height: 1.5rem; border: 1px solid var(--ge-border); border-radius: 50%; background: var(--ge-band); color: #c3ccd4; font-size: .5rem; font-weight: 700; letter-spacing: .03em; }
+
+/* Activity */
+.activity { margin: 0; padding: 0; list-style: none; }
+.activity li { display: flex; align-items: center; gap: .6rem; padding-block: .75rem; border-bottom: 1px solid var(--ge-border); color: #b6c0c9; font-size: .66rem; }
+.activity li:first-child { padding-top: 0; }
+.activity strong { color: var(--ge-text); font-weight: 600; }
+.activity__more { display: inline-block; margin-top: 1rem; color: var(--ge-accent); font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+
+/* Popular lists: three overlapping posters */
+.stack { display: flex; margin-bottom: 1rem; }
+.stack .ph-poster { flex: none; width: 7rem; }
+.stack .ph-poster + .ph-poster { margin-left: -4.25rem; }
+.stack .ph-poster:nth-child(2) { z-index: 1; }
+.stack .ph-poster:nth-child(3) { z-index: 2; }
+.list__title { margin: 0 0 .25rem; font-family: var(--bs-body-font-family); font-size: .82rem; font-weight: 700; letter-spacing: 0; }
+.list__meta { margin: 0; color: var(--ge-muted); font-size: .64rem; }
+
+/* CTA */
+.cta { padding-block: 3.5rem; background: var(--ge-band); }
+.cta__title { max-width: 24rem; margin: 0; font-size: clamp(1.4rem, 3.4vw, 1.6rem); font-weight: 700; line-height: 1.25; }
+
+/* Placeholder colours (reviews and lists, static blocks) */
+.c1 { background: #2d4a6b; }
+.c2 { background: #7a3f32; }
+.c3 { background: #8a7355; }
+.c4 { background: #44525e; }
+.c5 { background: #56603a; }
+.c6 { background: #7a5c54; }

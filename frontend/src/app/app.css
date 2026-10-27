@@ -1,0 +1,31 @@
+.site-header { position: sticky; top: 0; z-index: 10; background: rgba(11, 18, 24, .92); backdrop-filter: blur(6px); border-bottom: 1px solid #16232d; }
+.navbar { --bs-navbar-padding-y: .55rem; min-height: 3.6rem; }
+
+.brand { display: inline-flex; align-items: center; gap: .55rem; color: var(--ge-text); font-family: 'Inter', system-ui, sans-serif; font-size: .8rem; font-weight: 700; text-decoration: none; }
+.brand__dots { display: inline-flex; gap: 2px; }
+.brand__dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--ge-accent); }
+.brand__dots i:nth-child(2) { background: #f5a623; }
+.brand__dots i:nth-child(3) { background: #e5544b; }
+
+.nav-link { --bs-nav-link-padding-x: 0; --bs-navbar-nav-link-padding-x: 0; color: #c3ccd4; font-size: .62rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+.nav-link:hover, .nav-link:focus-visible { color: var(--ge-text); }
+
+.search-toggle { display: inline-grid; place-items: center; padding: .25rem; background: none; border: 0; color: #c3ccd4; }
+.search-toggle:hover { color: var(--ge-text); }
+
+.btn-user { padding: .45rem .9rem; background: #2a3a45; border: 0; border-radius: 3px; color: var(--ge-text); font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.btn-user:hover { background: #34495a; color: #fff; }
+
+.search-bar { display: flex; gap: .5rem; padding-block: .6rem .85rem; }
+.search-bar .form-control { background: var(--ge-surface); border-color: var(--ge-border); color: var(--ge-text); font-size: .85rem; }
+.search-bar .form-control:focus { border-color: var(--ge-accent); box-shadow: none; }
+
+.site-footer { padding-block: 1.6rem; background: var(--ge-bg); border-top: 1px solid #16232d; }
+.footer-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 0; padding: 0; list-style: none; }
+.footer-links a { color: var(--ge-muted); font-size: .62rem; text-decoration: none; }
+.footer-links a:hover { color: var(--ge-text); }
+.footer-note { color: #5b6a77; font-size: .6rem; }
+
+@media (max-width: 767.98px) {
+	.navbar-nav { padding-block: .75rem; gap: .5rem; }
+}

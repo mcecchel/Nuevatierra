@@ -1,0 +1,48 @@
+<header class="site-header">
+  <nav class="navbar navbar-expand-md" data-bs-theme="dark" aria-label="Navigazione principale">
+	<div class="container-ge d-flex flex-wrap align-items-center justify-content-between">
+		<a class="brand" routerLink="/" aria-label="Gaming Explorer, home">
+		<span class="brand__dots" aria-hidden="true"><i></i><i></i><i></i></span>Gaming Explorer
+		</a>
+
+		<button class="navbar-toggler" type="button" aria-label="Apri il menu" [attr.aria-expanded]="menuOpen()" (click)="menuOpen.set(!menuOpen())">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse justify-content-end" [class.show]="menuOpen()">
+		<ul class="navbar-nav align-items-md-center gap-md-4">
+			@for (link of navLinks; track link.label) {
+			<li class="nav-item"><a class="nav-link" [routerLink]="link.path">{{ link.label }}</a></li>
+			}
+			<li class="nav-item">
+			<button type="button" class="search-toggle" aria-label="Cerca un gioco" [attr.aria-expanded]="searchOpen()" (click)="toggleSearch()">
+				<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+			</button>
+			</li>
+			<li class="nav-item"><a class="btn btn-user" href="#">Area utente</a></li>
+		</ul>
+		</div>
+	</div>
+
+	@if (searchOpen()) {
+		<form class="container-ge search-bar" role="search" (submit)="search($event, searchInput.value)">
+		<input #searchInput type="search" class="form-control" placeholder="Cerca un videogioco per nome…" aria-label="Cerca un videogioco" />
+		<button type="submit" class="btn btn-ge">Cerca</button>
+		</form>
+	}
+	</nav>
+</header>
+
+<main><router-outlet /></main>
+
+<footer class="site-footer">
+	<div class="container-ge d-flex flex-wrap align-items-center justify-content-between gap-3">
+	<a class="brand" routerLink="/"><span class="brand__dots" aria-hidden="true"><i></i><i></i><i></i></span>Gaming Explorer</a>
+	<ul class="footer-links">
+		@for (l of footerLinks; track l) {
+		<li><a href="#">{{ l }}</a></li>
+		}
+	</ul>
+	<small class="footer-note">Interfaccia dimostrativa &bull; Nessun asset fotografico utilizzato</small>
+	</div>
+</footer>

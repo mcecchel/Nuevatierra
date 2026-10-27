@@ -1,0 +1,126 @@
+<!-- HERO -->
+<section class="hero">
+	<div class="container-ge">
+	<p class="eyebrow mb-3">La tua storia, pixel dopo pixel</p>
+	<h1>Scopri nuovi giochi.<br />Racconta quelli che ami.</h1>
+	<p class="hero__lead">
+		Tieni traccia delle tue avventure, crea liste e scopri nuovi titoli insieme a una community di appassionati.
+	</p>
+	<div class="d-flex flex-wrap align-items-center gap-3">
+		<a class="btn btn-ge" routerLink="/">Crea il tuo account</a>
+		<small class="hero__note">È gratuito. Nessuna pubblicità invadente.</small>
+	</div>
+	</div>
+</section>
+
+<!-- POPULAR GAMES (RAWG /games) + ABOUT -->
+<section class="band band--alt">
+	<div class="container-ge">
+	<div class="section-head">
+		<span>Giochi popolari questa settimana</span>
+		<a routerLink="/games">Tutti i giochi &gt;</a>
+	</div>
+
+	@if (popular.isLoading()) {
+		<div class="row row-cols-3 row-cols-md-6 games-grid" aria-busy="true" aria-label="Caricamento dei giochi">
+		@for (s of skeletons; track s) {
+			<div class="col"><span class="ph-poster skeleton"></span></div>
+		}
+		</div>
+	}
+	@else if (popular.error()) {
+		<div class="state" role="alert">
+		<p class="mb-3">Impossibile caricare i giochi. Controlla la connessione e riprova.</p>
+		<button type="button" class="btn btn-ge" (click)="popular.reload()">Riprova</button>
+		</div>
+	}
+	@else {
+		@let games = popular.value()?.results ?? [];
+		@if (games.length) {
+		<div class="row row-cols-3 row-cols-md-6 games-grid">
+			@for (game of games; track game.id; let i = $index) {
+			<div class="col"><app-game-card [game]="game" [index]="i + 1" /></div>
+			}
+		</div>
+		}
+		@else {
+			<div class="state"><p class="mb-0">Nessun gioco trovato per questa settimana.</p></div>
+		}
+	}
+
+	<h2 class="about__title">GameLog ti aiuta a ricordare, scoprire e condividere i videogiochi.</h2>
+	<div class="features">
+		<div class="row row-cols-1 row-cols-md-3 gy-4">
+		@for (f of features; track f.n) {
+			<div class="col">
+			<span class="features__n">{{ f.n }}</span>
+			<h3 class="features__title">{{ f.title }}</h3>
+			<p class="features__text">{{ f.text }}</p>
+			</div>
+		}
+		</div>
+	</div>
+	</div>
+</section>
+
+<!-- REVIEWS + ACTIVITY -->
+<section class="band band--surface">
+	<div class="container-ge">
+	<div class="row gy-5">
+		<div class="col-lg-7">
+		<div class="section-head"><span>Recensioni popolari</span><a href="#">Altro</a></div>
+		@for (r of reviews; track r.n) {
+			<article class="review">
+			<span class="ph-poster review__poster" [class]="'c' + r.n"><span class="ph-poster__n">{{ pad(r.n) }}</span></span>
+			<div>
+				<div class="review__user"><span class="avatar">{{ r.initials }}</span>{{ r.user }}</div>
+				<h3 class="review__title">{{ r.title }} <span class="review__stars">{{ stars(r.rating) }}</span></h3>
+				<p class="review__text">{{ r.text }}</p>
+				<small class="review__likes">{{ r.likes }} apprezzamenti</small>
+			</div>
+			</article>
+		}
+		</div>
+		<div class="col-lg-4 offset-lg-1">
+		<div class="section-head"><span>Attività recente</span></div>
+		<ul class="activity">
+			@for (a of activity; track a.user) {
+			<li><span class="avatar">{{ a.initials }}</span><span><strong>{{ a.user }}</strong>{{ ' ' + a.verb }}<strong>{{ a.object }}</strong>{{ a.tail }}</span></li>
+			}
+		</ul>
+		<a class="activity__more" href="#">Esplora l’attività della community &gt;</a>
+		</div>
+	</div>
+	</div>
+</section>
+
+<!-- POPULAR LISTS -->
+<section class="band band--alt">
+	<div class="container-ge">
+	<div class="section-head"><span>Liste popolari</span><a href="#">Tutte le liste &gt;</a></div>
+	<div class="row gy-4">
+		@for (l of lists; track l.title) {
+		<div class="col-md-4">
+			<div class="stack">
+			@for (p of l.posters; track p) {
+				<span class="ph-poster" [class]="'c' + p"><span class="ph-poster__n">{{ pad(p) }}</span></span>
+			}
+			</div>
+			<h3 class="list__title">{{ l.title }}</h3>
+			<p class="list__meta">{{ l.desc }} &bull; {{ l.count }} titoli</p>
+		</div>
+		}
+	</div>
+	</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+	<div class="container-ge d-flex flex-wrap align-items-center justify-content-between gap-4">
+	<div>
+		<p class="eyebrow mb-2">Inizia il tuo diario</p>
+		<h2 class="cta__title">Ogni gioco racconta anche qualcosa di te.</h2>
+	</div>
+	<a class="btn btn-ge" routerLink="/">Unisciti alla community</a>
+	</div>
+</section>

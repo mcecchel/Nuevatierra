@@ -1,0 +1,31 @@
+<a class="game-card" [routerLink]="['/games', game().id]">
+	<span class="ph-poster" [class.ph-poster--cover]="game().background_image">
+	@if (game().background_image) {
+		<img [src]="game().background_image" [alt]="'Copertina di ' + game().name" loading="lazy" />
+	}
+	@if (label()) {
+		<span class="ph-poster__n">{{ label() }}</span>
+	}
+	</span>
+	<span class="game-card__body">
+	<strong class="game-card__title">{{ game().name }}</strong>
+	<span class="game-card__meta">
+		@if (game().released) {
+		{{ game().released | date: 'd MMM y' }}
+		}
+		@else {
+			Data n.d.
+		}
+		&middot;
+		@if (game().rating > 0) {
+		<span class="game-card__rating">★ {{ game().rating | number: '1.1-1' }}</span>
+		}
+		@else {
+			n.d.
+		}
+	</span>
+	@if (platforms()) {
+		<span class="game-card__platforms">{{ platforms() }}</span>
+	}
+	</span>
+</a>
