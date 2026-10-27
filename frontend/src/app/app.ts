@@ -55,7 +55,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 </footer>
 `,
 	styles: `
-.site-header { position: sticky; top: 0; z-index: 10; background: rgba(11, 18, 24, .92); backdrop-filter: blur(6px); border-bottom: 1px solid #16232d; }
+.site-header { position: relative; z-index: 10; background: rgba(11, 18, 24, .92); backdrop-filter: blur(6px); border-bottom: 1px solid #16232d; }
 .navbar { --bs-navbar-padding-y: .55rem; min-height: 3.6rem; }
 
 .brand { display: inline-flex; align-items: center; gap: .55rem; color: var(--ge-text); font-family: 'Inter', system-ui, sans-serif; font-size: .8rem; font-weight: 700; text-decoration: none; }
@@ -104,11 +104,9 @@ export class App {
 
 	protected toggleSearch(): void {
 		this.searchOpen.update((open) => !open);
-		// The input exists only after the next render
 		setTimeout(() => this.searchInput()?.nativeElement.focus());
 	}
 
-	// Basic search: hands the term to the games list page (/games?search=...)
 	protected search(event: Event, term: string): void {
 		event.preventDefault();
 		const search = term.trim();
