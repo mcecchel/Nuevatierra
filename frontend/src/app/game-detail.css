@@ -1,0 +1,236 @@
+.detail-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 1.5rem;
+	font-family: 'Inter', sans-serif;
+	color: #e0e0e0;
+}
+
+.btn-back {
+	background: transparent;
+	color: #00a3e0;
+	border: none;
+	font-size: 0.95rem;
+	font-weight: 600;
+	cursor: pointer;
+	margin-bottom: 1.5rem;
+	padding: 0;
+	transition: color 0.2s;
+}
+
+.btn-back:hover {
+	color: #ffffff;
+}
+
+.hero-header {
+	background-size: cover;
+	background-position: center;
+	border-radius: 12px;
+	padding: 4rem 2rem 2rem 2rem;
+	margin-bottom: 2rem;
+	min-height: 280px;
+	display: flex;
+	align-items: flex-end;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.hero-body {
+	max-width: 800px;
+}
+
+.game-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin: 0 0 0.5rem 0;
+	color: #ffffff;
+}
+
+.game-subtext {
+	font-size: 0.95rem;
+	color: #9ca3af;
+	margin-top: 0.25rem;
+}
+
+.game-subtext strong {
+	color: #e0e0e0;
+}
+
+/* Metadata sectionb */
+.meta-section {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 1rem;
+	margin-bottom: 2.5rem;
+}
+
+.meta-card {
+	background-color: rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	padding: 1rem;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.meta-label {
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: #9ca3af;
+}
+
+.meta-value {
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+/* Metacritic colors according to the brand system */
+.metacritic-badge {
+	display: inline-block;
+	padding: 0.25rem 0.6rem;
+	border-radius: 4px;
+	font-weight: 700;
+	font-size: 1.1rem;
+	width: fit-content;
+}
+
+.score-high {
+	background-color: #10b981;
+	color: #ffffff;
+}
+
+.score-medium {
+	background-color: #f59e0b;
+	color: #ffffff;
+}
+
+.score-low {
+	background-color: #ef4444;
+	color: #ffffff;
+}
+
+.score-neutral {
+	background-color: #333333;
+	color: #9ca3af;
+}
+
+.tags-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+}
+
+.tag-badge {
+	background-color: rgba(0, 163, 224, 0.15);
+	color: #00a3e0;
+	font-size: 0.8rem;
+	padding: 0.2rem 0.5rem;
+	border-radius: 4px;
+	font-weight: 500;
+}
+
+.tag-badge.platform {
+	background-color: rgba(255, 255, 255, 0.08);
+	color: #e0e0e0;
+}
+
+/* Description Section */
+.description-section {
+	margin-bottom: 2.5rem;
+	line-height: 1.7;
+}
+
+.description-section h2,
+.gallery-section h2 {
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	color: #ffffff;
+}
+
+.description-text {
+	color: #cccccc;
+	white-space: pre-line;
+}
+
+/* Screenshot Gallery */
+.screenshots-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+}
+
+@media (min-width: 768px) {
+	.screenshots-grid {
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.25rem;
+	}
+}
+
+.screenshot-item {
+	overflow: hidden;
+	border-radius: 8px;
+	aspect-ratio: 16 / 9;
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+.screenshot-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s;
+}
+
+.screenshot-item img:hover {
+	transform: scale(1.05);
+}
+
+/* Skeleton & Error States */
+.skeleton-hero {
+	height: 280px;
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 12px;
+	margin-bottom: 1.5rem;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-line {
+	height: 20px;
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 4px;
+	margin-bottom: 0.75rem;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-line.short {
+	width: 40%;
+}
+
+@keyframes pulse {
+	0% { opacity: 0.4; }
+	50% { opacity: 0.8; }
+	100% { opacity: 0.4; }
+}
+
+.state-banner {
+	text-align: center;
+	padding: 4rem 2rem;
+	background-color: rgba(255, 255, 255, 0.03);
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary {
+	background-color: #005a9c;
+	color: #ffffff;
+	border: none;
+	padding: 0.6rem 1.5rem;
+	border-radius: 6px;
+	font-weight: 600;
+	cursor: pointer;
+	margin-top: 1rem;
+}
+
+.btn-primary:hover {
+	background-color: #00457a;
+}

@@ -32,6 +32,53 @@ export interface GamesPage {
 	results: Game[];
 }
 
+// Templates for Genres and Platforms (required for search filters)
+export interface Genre {
+	id: number;
+	name: string;
+	slug: string;
+}
+export interface PlatformItem {
+	id: number;
+	name: string;
+	slug: string;
+}
+// Pagination for Genres and Platforms following the GamesPage pattern
+export interface GenresPage {
+	count: number;
+	results: Genre[];
+}
+export interface PlatformsPage {
+	count: number;
+	results: PlatformItem[];
+}
+
+// Templates for the detail card and screenshots
+export interface Developer {
+	id: number;
+	name: string;
+	slug: string;
+}
+export interface Publisher {
+	id: number;
+	name: string;
+	slug: string;
+}
+export interface Screenshot {
+	id: number;
+	image: string;
+}
+export interface GameDetailData extends Game {
+	description_raw?: string;
+	developers?: Developer[];
+	publishers?: Publisher[];
+	genres?: Genre[];
+}
+export interface ScreenshotsResponse {
+	count?: number;
+	results: Screenshot[];
+}
+
 // Query parameters accepted by GET /api/games (same names as RAWG's /games)
 export interface GamesQuery {
 	search?: string;
@@ -62,5 +109,20 @@ export class GamesApi {
 		}
 		return this.http.get<GamesPage>('/api/games', { params });
 	}
-	// TODO: getGame(id), getScreenshots(id), getGenres(), getPlatforms()
+
+	// Methods for retrieving curtain filter data
+	getGenres(): Observable<GenresPage> {
+		return this.http.get<GenresPage>('/api/genres');
+	}
+	getPlatforms(): Observable<PlatformsPage> {
+		return this.http.get<PlatformsPage>('/api/platforms');
+	}
+
+	// Methods for retrieving detail information and screenshots of the individual game
+	getGame(id: number): Observable<GameDetailData> {
+		return this.http.get<GameDetailData>(`/api/games/${id}`);
+	}
+	getScreenshots(id: number): Observable<ScreenshotsResponse> {
+		return this.http.get<ScreenshotsResponse>(`/api/games/${id}/screenshots`);
+	}
 }

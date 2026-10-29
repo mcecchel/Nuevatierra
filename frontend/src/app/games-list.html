@@ -1,0 +1,113 @@
+<div class="games-container">
+	<!-- Header with results count -->
+	<header class="games-header">
+		<div class="header-title">
+			<h1>Esplora i Videogiochi</h1>
+			<span class="results-badge" *ngIf="!isLoading && !hasError">
+				{{ totalResults }} risultati trovati
+			</span>
+		</div>
+		<button class="btn-toggle-filters d-md-none" (click)="toggleMobileFilters()">
+			{{ showMobileFilters ? 'Chiudi Filtri' : 'Filtri' }}
+		</button>
+	</header>
+
+	<!-- Filters panel -->
+	<section class="filters-panel" [class.show-mobile]="showMobileFilters">
+		<div class="filter-group filter-search">
+			<label for="search-input">Cerca</label>
+			<input id="search-input" type="text" placeholder="Nome del gioco..."
+				[(ngModel)]="currentQuery.search" (keyup.enter)="onSearchSubmit()" />
+		</div>
+
+		<div class="filter-group">
+			<label for="genre-select">Genere</label>
+			<select id="genre-select" [(ngModel)]="currentQuery.genres" (change)="onFilterChange()">
+				<option [ngValue]="undefined">Tutti i generi</option>
+				<option *ngFor="let g of genres" [value]="g.id">{{ g.name }}</option>
+			</select>
+		</div>
+
+		<div class="filter-group">
+			<label for="platform-select">Piattaforma</label>
+			<select id="platform-select" [(ngModel)]="currentQuery.platforms" (change)="onFilterChange()">
+				<option [ngValue]="undefined">Tutte le piattaforme</option>
+				<option *ngFor="let p of platforms" [value]="p.id">{{ p.name }}</option>
+			</select>
+		</div>
+
+		<div class="filter-group">
+			<label for="year-select">Anno</label>
+			<select id="year-select" [(ngModel)]="selectedYear" (change)="onFilterChange()">
+				<option value="">Tutti gli anni</option>
+				<option *ngFor="let y of years" [value]="y">{{ y }}</option>
+			</select>
+		</div>
+
+		<div class="filter-group">
+			<label for="metacritic-select">Metacritic</label>
+			<select id="metacritic-select" [(ngModel)]="currentQuery.metacritic" (change)="onFilterChange()">
+				<option [ngValue]="undefined">Tutti i voti</option>
+				<option value="90,100">90+</option>
+				<option value="80,100">80+</option>
+				<option value="70,100">70+</option>
+				<option value="60,100">60+</option>
+			</select>
+		</div>
+
+		<div class="filter-group">
+			<label for="ordering-select">Ordina per</label>
+			<select id="ordering-select" [(ngModel)]="currentQuery.ordering" (change)="onFilterChange()">
+				<option value="-rating">Valutazione Utenti</option>
+				<option value="-metacritic">Metacritic</option>
+				<option value="-released">Più Recenti</option>
+				<option value="released">Meno Recenti</option>
+				<option value="name">Nome (A-Z)</option>
+			</select>
+		</div>
+
+		<button class="btn-reset" (click)="resetFilters()">Azzera Filtri</button>
+	</section>
+
+	<!-- UI States (Loading, Error, Empty) -->
+	<section class="state-container" *ngIf="isLoading">
+		<div class="games-grid">
+			<div class="card-skeleton" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12]"></div>
+		</div>
+	</section>
+
+	<section class="state-container state-banner error-banner" *ngIf="!isLoading && hasError">
+		<div class="banner-content">
+			<p>Si è verificato un errore durante il recupero dei dati.</p>
+			<button class="btn-primary" (click)="fetchGames()">Riprova</button>
+		</div>
+	</section>
+
+	<section class="state-container state-banner empty-banner" *ngIf="!isLoading && !hasError && games.length === 0">
+		<div class="banner-content">
+			<p>Nessun videogioco trovato con i criteri selezionati.</p>
+			<button class="btn-primary" (click)="resetFilters()">Azzera Filtri</button>
+		</div>
+	</section>
+
+	<!-- Games Grid -->
+	<main class="games-grid" *ngIf="!isLoading && !hasError && games.length > 0">
+		<!-- Selector of GameCard  -->
+		<app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
+	</main>
+
+	<!-- Pagination Controls -->
+	<nav class="pagination-container" *ngIf="!isLoading && !hasError && totalPages > 1">
+		<button class="pagination-btn" [disabled]="currentQuery.page === 1" 
+			(click)="onPageChange((currentQuery.page || 1) - 1)">
+			Precedente
+		</button>
+		<span class="pagination-info">
+			Pagina {{ currentQuery.page }} di {{ totalPages }}
+		</span>
+		<button class="pagination-btn" [disabled]="currentQuery.page === totalPages" 
+			(click)="onPageChange((currentQuery.page || 1) + 1)">
+			Successiva
+		</button>
+	</nav>
+</div>

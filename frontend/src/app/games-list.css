@@ -1,0 +1,195 @@
+.games-container {
+	max-width: 1400px;
+	margin: 0 auto;
+	padding: 1.5rem;
+}
+
+.games-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.header-title h1 {
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 0 0 0.25rem 0;
+}
+
+.results-badge {
+	font-size: 0.875rem;
+	color: #00a3e0;
+}
+
+.btn-toggle-filters {
+	background-color: #005a9c;
+	color: #ffffff;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-radius: 6px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.filters-panel {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 1rem;
+	background-color: rgba(255, 255, 255, 0.05);
+	padding: 1.25rem;
+	border-radius: 8px;
+	margin-bottom: 2rem;
+	align-items: end;
+}
+
+.filter-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}
+
+.filter-group label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #9ca3af;
+}
+
+.filter-group input,
+.filter-group select {
+	background-color: #1a1a1a;
+	color: #e0e0e0;
+	border: 1px solid #333333;
+	padding: 0.5rem;
+	border-radius: 6px;
+	font-size: 0.875rem;
+	font-family: inherit;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+	outline: none;
+	border-color: #00a3e0;
+}
+
+.btn-reset {
+	background: transparent;
+	color: #ef4444;
+	border: 1px solid #ef4444;
+	padding: 0.5rem 1rem;
+	border-radius: 6px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.btn-reset:hover {
+	background-color: rgba(239, 68, 68, 0.1);
+}
+
+.games-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+}
+
+@media (min-width: 768px) {
+	.games-grid {
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1.25rem;
+	}
+}
+
+@media (min-width: 1200px) {
+	.games-grid {
+		grid-template-columns: repeat(6, 1fr);
+		gap: 1.5rem;
+	}
+}
+
+.card-skeleton {
+	height: 280px;
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 8px;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+	0% { opacity: 0.4; }
+	50% { opacity: 0.8; }
+	100% { opacity: 0.4; }
+}
+
+.state-container {
+	margin: 3rem 0;
+}
+
+.state-banner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 3rem 1.5rem;
+	background-color: rgba(255, 255, 255, 0.03);
+	border-radius: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.banner-content p {
+	font-size: 1.125rem;
+	margin-bottom: 1rem;
+}
+
+.btn-primary {
+	background-color: #005a9c;
+	color: #ffffff;
+	border: none;
+	padding: 0.6rem 1.25rem;
+	border-radius: 6px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.btn-primary:hover {
+	background-color: #00457a;
+}
+
+.pagination-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1.5rem;
+	margin-top: 3rem;
+}
+
+.pagination-btn {
+	background-color: #005a9c;
+	color: #ffffff;
+	border: none;
+	padding: 0.5rem 1.25rem;
+	border-radius: 6px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.pagination-btn:disabled {
+	background-color: #333333;
+	color: #777777;
+	cursor: not-allowed;
+}
+
+.pagination-info {
+	font-size: 0.875rem;
+	color: #9ca3af;
+}
+
+@media (max-width: 767px) {
+	.filters-panel {
+		display: none;
+	}
+	.filters-panel.show-mobile {
+		display: flex;
+		flex-direction: column;
+	}
+}

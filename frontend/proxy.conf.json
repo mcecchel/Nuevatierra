@@ -2,6 +2,12 @@
   "/api/games": {
     "target": "http://localhost:5001"
   },
+  "/api/genres": {
+    "target": "http://localhost:5001"
+  },
+  "/api/platforms": {
+    "target": "http://localhost:5001"
+  },
   "/health/catalog": {
     "target": "http://localhost:5001",
     "pathRewrite": {
